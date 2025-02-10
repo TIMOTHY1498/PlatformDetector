@@ -36,7 +36,7 @@ function apis:Check()
 	elseif CONSOLE then
 		return "Console"
 	elseif PC then
-		return "PC/Mac"
+		return "PC"
 	else
 		return nil
 	end
