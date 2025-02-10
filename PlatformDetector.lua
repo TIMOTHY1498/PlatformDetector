@@ -36,15 +36,11 @@ function apis:Check()
 			return "Tablet"
 		end
 	elseif CONSOLE then
-		if CONSOLE then
-			return Enum.Platform.XBoxOne
-		elseif CONSOLE and (getViewportSize().Y <= 1440) then
-			return Enum.Platform.PS5
-		end
+		return "Console"
 	elseif PC then
-		return Enum.Platform.Windows
+		return "PC/Mac"
 	else
-		return Enum.Platform.None
+		return nil
 	end
 end
 
