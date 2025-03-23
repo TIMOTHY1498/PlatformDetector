@@ -36,7 +36,11 @@ function apis:Check()
 	elseif CONSOLE then
 		return "Console"
 	elseif PC then
-		return "PC"
+		if game.GuiService.IsWindows == true then
+			return "Windows"
+		else
+			return "Mac"
+		end
 	else
 		return nil
 	end
