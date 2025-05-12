@@ -1,49 +1,44 @@
---[[
-	// PlatformDetector.lua - An extenstion that used for checking the device platform.
-	
-	// Created by PakTimoGus124
-	// Version 0.1
-]]--
+local UserInputService = game:GetService("UserInputService")
+local GuiService = game:GetService("GuiService")
 
-local MOBILE = game.UserInputService.TouchEnabled
-local CONSOLE = game.UserInputService.GamepadEnabled
-local PC = game.UserInputService.KeyboardEnabled and game.UserInputService.MouseEnabled
+local PlatformDetector = {}
 
-function getViewportSize()
-	while not game.Workspace.CurrentCamera do
-		game.Workspace.Changed:wait()
-	end
+function PlatformDetector:Check()
+	local dev = ""
 
-	while game.Workspace.CurrentCamera.ViewportSize == Vector2.new(0,0) or
-		game.Workspace.CurrentCamera.ViewportSize == Vector2.new(1,1) do
-		game.Workspace.CurrentCamera.Changed:wait()
-	end
+	if UserInputService.VREnabled then
+		dev = "Virtual Reality Headset"
 
-	return game.Workspace.CurrentCamera.ViewportSize
-end
-
---// Public APIs
-
-local apis = {}
-
-function apis:Check()
-	if MOBILE then
-		if MOBILE and (getViewportSize().Y <= 370) then
-			return "Phone"
-		else
-			return "Tablet"
+	elseif GuiService.IsWindows then
+		local version = getfenv().version()
+		if version:sub(1, 2) == "0." then
+			dev = "Windows"
+		elseif version:sub(1, 2) == "2." then
+			dev = "Windows ‒ Microsoft Store Version"
 		end
-	elseif CONSOLE then
-		return "Console"
-	elseif PC then
-		if game.GuiService.IsWindows == true then
-			return "Windows"
+
+	elseif getfenv().version():sub(1, 2) == "2." then
+		if UserInputService.TouchEnabled then
+			dev = "Mobile"
 		else
-			return "Mac"
+			dev = "Linux"
 		end
+
+	elseif GuiService:IsTenFootInterface() or getfenv().version():sub(1, 2) == "1." then
+		if getfenv().version():sub(1, 2) == "1." then
+			dev = "Console"
+		else
+			dev = "Console " .. getfenv().version()
+		end
+
+	elseif getfenv().version():sub(1, 2) == "0." then
+		dev = "MacOS"
+
 	else
-		return nil
+		dev = "Unknown game version: " .. getfenv().version()
 	end
+
+	return dev or "Unknown"
 end
 
-return apis
+return PlatformDetector
