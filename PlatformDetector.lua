@@ -8,6 +8,7 @@
 local MOBILE = game.UserInputService.TouchEnabled
 local CONSOLE = game.UserInputService.GamepadEnabled
 local PC = game.UserInputService.KeyboardEnabled and game.UserInputService.MouseEnabled
+local VR = game.UserInputService.VREnabled
 
 function getViewportSize()
 	while not game.Workspace.CurrentCamera do
@@ -41,6 +42,8 @@ function apis:Check()
 		else
 			return "Mac"
 		end
+	elseif VR then
+		return "VR"
 	else
 		return nil
 	end
