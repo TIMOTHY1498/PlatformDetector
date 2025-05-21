@@ -2,7 +2,7 @@
 	// PlatformDetector.lua - An extenstion that used for checking the device platform.
 	
 	// Created by PakTimoGus124
-	// Version 0.1
+	// Version 0.3
 ]]--
 
 local MOBILE = game.UserInputService.TouchEnabled
