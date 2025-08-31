@@ -1,7 +1,7 @@
 --[[
 	// PlatformDetector.lua - An extenstion that used for checking the device platform.
 	
-	// Created by PakTimoGus124
+	// Created by timothy1498_boi
 	// Version 0.3
 ]]--
 
@@ -50,3 +50,4 @@ function apis:Check()
 end
 
 return apis
+
