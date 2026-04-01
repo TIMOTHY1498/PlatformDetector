@@ -10,3 +10,4 @@ Roblox ModuleScript that used for checking platform.
 
 - TIMOTHY1498 (timothy1498_boi)
 - LeontKing2 
+- NeverSimplified
