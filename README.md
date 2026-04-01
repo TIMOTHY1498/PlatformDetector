@@ -2,9 +2,9 @@
 
 Roblox ModuleScript that used for checking platform.
 
-# Update ver 0.0.3
+# Update ver 0.0.4
 
-- Added VR Platform
+- Update devices & Improve Console with `GuiService:IsTenFootInterface()` API
 
 # Credits
 
