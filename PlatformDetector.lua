@@ -5,10 +5,18 @@
 	// Version 0.3
 ]]--
 
-local MOBILE = game.UserInputService.TouchEnabled
-local CONSOLE = game.UserInputService.GamepadEnabled
-local PC = game.UserInputService.KeyboardEnabled and game.UserInputService.MouseEnabled
-local VR = game.UserInputService.VREnabled
+local GuiService = game:GetService("GuiService")
+local MOBILE
+local CONSOLE
+local PC
+local VR
+function updateDevices()
+	MOBILE = game.UserInputService.TouchEnabled and not game.UserInputService.MouseEnabled and not game.UserInputService.KeyboardEnabled
+	CONSOLE = GuiService:IsTenFootInterface() and game.UserInputService.GamepadEnabled
+	PC = game.UserInputService.KeyboardEnabled and game.UserInputService.MouseEnabled
+	VR = game.UserInputService.VREnabled
+end
+updateDevices()
 
 function getViewportSize()
 	while not game.Workspace.CurrentCamera do
@@ -28,6 +36,9 @@ end
 local apis = {}
 
 function apis:Check()
+	-- UPDATE THE DEFAULT SETTINGS IN THE CASE OF CHANGING CONNECTED DEVICES
+	updateDevices()
+	--//
 	if MOBILE then
 		if MOBILE and (getViewportSize().Y <= 370) then
 			return "Phone"
