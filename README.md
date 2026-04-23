@@ -2,7 +2,7 @@
 
 Roblox ModuleScript that used for checking platform.
 
-# Update ver 0.0.4
+# Update ver 0.4.5
 
 - Update devices & Improve Console with `GuiService:IsTenFootInterface()` API
 
