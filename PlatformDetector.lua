@@ -2,14 +2,16 @@
 	// PlatformDetector.lua - An extenstion that used for checking the device platform.
 	
 	// Created by timothy1498_boi
-	// Version 0.3
+	// Version 0.4.5
 ]]--
 
 local GuiService = game:GetService("GuiService")
-local MOBILE
-local CONSOLE
-local PC
-local VR
+
+local MOBILE = nil
+local CONSOLE = nil
+local PC = nil
+local VR = nil
+
 function updateDevices()
 	MOBILE = game.UserInputService.TouchEnabled and not game.UserInputService.MouseEnabled and not game.UserInputService.KeyboardEnabled
 	CONSOLE = GuiService:IsTenFootInterface() and game.UserInputService.GamepadEnabled
@@ -36,9 +38,9 @@ end
 local apis = {}
 
 function apis:Check()
-	-- UPDATE THE DEFAULT SETTINGS IN THE CASE OF CHANGING CONNECTED DEVICES
+	--// UPDATE THE DEFAULT SETTINGS IN THE CASE OF CHANGING CONNECTED DEVICES
 	updateDevices()
-	--//
+
 	if MOBILE then
 		if MOBILE and (getViewportSize().Y <= 370) then
 			return "Phone"
@@ -59,6 +61,24 @@ function apis:Check()
 		return nil
 	end
 end
+
+function apis:FastCheck()
+	--// UPDATE THE DEFAULT SETTING IN CASE UPDATED
+	updateDevices()
+
+	if MOBILE then
+		return "Phone"
+	elseif CONSOLE then
+		return "Console"
+	elseif PC then
+		return "PC"
+	elseif VR then
+		return "VR"
+	else
+		return nil
+	end
+end
+
 
 return apis
 
