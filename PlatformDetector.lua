@@ -63,7 +63,7 @@ function apis:Check()
 end
 
 function apis:FastCheck()
-	--// UPDATE THE DEFAULT SETTING IN CASE UPDATED
+	--// UPDATE THE DEFAULT SETTING IN CASE UPDATED due to CHANGING CONNECTED DEVICES
 	updateDevices()
 
 	if MOBILE then
